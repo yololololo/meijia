@@ -1,0 +1,5 @@
+<div class="path"><a href="{:url('index/index')}">主页</a> > 
+{volist name="cateInfo" id='cate'}
+<a href="{if condition='$cate.type eq 1'}{:url('artlist/index',array('cateid'=>$cate['id']))}{elseif condition='$cate.type eq 2'}{:url('imglist/index',array('cateid'=>$cate['id']))}{else}{:url('page/index',array('cateid'=>$cate['id']))}{/if}">{$cate.name}</a> > 
+{/volist}
+</div>
