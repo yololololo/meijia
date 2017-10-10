@@ -4,11 +4,12 @@ use app\admin\model\Admin as Madmin;
 class Admin extends Common
 {
 
-    public function lst()
+   /* public function lst()
     {
         $auth=new Auth();
         $Madmin=new Madmin();
-        $adminres=$Madmin->getadmin();
+        $adminres=db('admin')->select();
+        dump($adminres);die();
         foreach($adminres as $v){
              $_groupTitle=$auth->getGroups($v['id']);
              $groupTitle=$_groupTitle[0]['title'];
@@ -18,6 +19,22 @@ class Admin extends Common
         return view();
         
     }
+*/
+   public function lst()
+    {
+        $auth=new Auth();
+        $Madmin=new Madmin();
+        $adminres=db('admin')->select();
+        foreach($adminres as $k=>$v){
+             $_groupTitle=$auth->getGroups($v['id']);
+             $groupTitle=$_groupTitle[0]['title'];
+             $adminres[$k]['groupTitle']=$groupTitle;
+        }
+        $this->assign('adminres',$adminres);
+        return view();
+        
+    }
+
 
     public function add()
     {
